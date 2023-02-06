@@ -1,0 +1,16 @@
+apiVersion: autoscaling/v1
+kind: HorizontalPodAutoscaler
+metadata:
+  name: nginx-test1-hpa
+  labels:
+    app: nginx-test1
+    version: 0.0.1
+    backstage.io/kubernetes-id: nginx-test1
+spec:
+ scaleTargetRef:
+   apiVersion: apps/v1
+   kind: Deployment
+   name: nginx-test1
+ minReplicas: 1
+ maxReplicas: 4
+ targetCPUUtilizationPercentage: 75
